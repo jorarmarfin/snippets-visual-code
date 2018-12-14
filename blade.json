@@ -1,0 +1,60 @@
+{
+	//FORMULARIOS
+	"Formulario": {
+		"prefix": "b:form open",
+		"body": [
+			"{!! Form::open(['${1:url}' => '${2:foo/bar}', 'method' => '${3:put}']) !!}",
+			"{!! Form::close() !!}"
+		],
+		"description": "Formularios con laravelcollective"
+	},
+	"Text": {
+		"prefix": "b:form text",
+		"body": [
+			"{!! Form::text('${1:nombre}',null,['placeholder'=>'${2:Nombre completo}','size'=>'${3:40}','aria-required'=>'true']) !!}"
+		],
+		"description": "Campo text de un formulario"
+	},
+	"TextArea": {
+		"prefix": "b:form textarea",
+		"body": [
+			"{!! Form::textarea('${1:nombre}',null,['placeholder'=>'${2:placeholder}','rows'=>'${3:10}','style'=>'width:100%;','aria-required'=>'true']) !!}"
+		],
+		"description": "campo textarea de un formulario"
+	},
+	"Button": {
+		"prefix": "b:form button",
+		"body": [
+			"{!! Form::submit('${1:Enviar}') !!}"
+		],
+		"description": "Boton laravel collective"
+	},
+	"bootstrap row col ": {
+		"prefix": "bootstrap:row",
+		"body": [
+			"<div class=\"row\">",
+			"\t<div class=\"col-md-12\">",
+			"\t</div>",
+			"</div>"
+		],
+		"description": "row col bootstrap"
+	},
+	"porto section":{
+		"prefix": "porto:section",
+		"body": [
+			"<section class=\"card\">",
+				"\t<header class=\"card-header\">",
+					"\t\t<div class=\"card-actions\">",
+						"\t\t\t<a href=\"#\" class=\"card-action card-action-toggle\" data-card-toggle=\"\"></a>",
+						"\t\t\t<a href=\"#\" class=\"card-action card-action-dismiss\" data-card-dismiss=\"\"></a>",
+					"\t\t</div>",
+					"\t\t<h2 class=\"card-title\">Datos</h2>",
+				"\t</header>",
+				"\t<div class=\"card-body\">",
+				"\t</div>",
+			"</section>"
+		],
+		"description": "theme porto section"
+
+	}
+}

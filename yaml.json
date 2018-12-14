@@ -1,0 +1,96 @@
+{
+	// DOCKER COMPOSE
+	"docker compose base": {
+		"prefix": "dkc:base",
+		"body": [
+			"version: ${1:version}",
+			"services:",
+			"networks:",
+				"- ${2:net}"
+		],
+		"description": "Codigo base de docker compose"
+	},
+	"Docker  crea imagen": {
+		"prefix": "dk:build",
+		"body": "docker build -t ${1:drinux/ckan:0.1} -f ${2:ckan/Dockerfile} .",
+		"description": "Codigo para crear una imagen"
+	},
+	"docker compose lamp": {
+		"prefix": "dkc:lamp",
+		"body": [
+			"version: '3'",
+			"services:",
+			"\tweb:",
+			"\t\tcontainer_name: ${1:nombre del servidor web}",
+			"\t\timage: ${2:nombre de la imagen del servidor web}",
+			"\t\tbuild:",
+			"\t\t context: ./",
+			"\t\t\tdockerfile: ${3:carpeta del docker file}/Dockerfile ",
+			"\t\tnetworks:",
+			"\t\t\t- ${4:red}",
+			"\t\tports:",
+			"\t\t\t - 860:80",
+			"\t\tvolumes:",
+			"\t\t\t - ${5:volumen del html}:/var/www/html",
+			"\t\trestart: always",
+			"\tmysql:",
+			"\t\tcontainer_name: ${6:nombre del servidor DB}",
+			"\t\timage: mysql:5.7",
+			"\t\tenvironment:",
+			"\t\t\t- MYSQL_USER=usraulavirtual",
+			"\t\t\t- MYSQL_PASSWORD=v1rtu4l2016",
+			"\t\t\t- MYSQL_ROOT_PASSWORD=holaperu",
+			"\t\t\t- MYSQL_DATABASE=bd_aulavirtual",
+			"\t\tvolumes:",
+			"\t\t\t- '${7:volumen}:/var/lib/mysql'",
+			"\t\tnetworks: ",
+			"\t\t\t- ${4:red}" ,
+			"\t\tports:",
+			"\t\t\t- 3307:3306",
+			"\tadminer:",
+			"\t\tcontainer_name: ${8:nombre del servidor adminer}",
+			"\t\timage: adminer",
+			"\t\trestart: always",
+			"\t\tnetworks:",
+			"\t\t\t- ${4:red}",
+			"\t\tports:",
+			"\t\t\t- 8680:8080",
+			"networks:",
+			"\t${4:red} :"
+		],
+		"description": "Docker compose LAMP"
+	},
+	"Docker compose crea depenencia": {
+		"prefix": "dkc:depen",
+		"body": [
+			"depends_on:",
+			 "- db",
+			 "- redis"
+		],
+		"description": "Codigo para crear una dependencia a una imagen"
+	},
+	//Docker bash
+	"Docker genera un contenedor": {
+		"prefix": "dk:build",
+		"body": "docker run -dit --name ${1:nombre-contenedor} ${2:imagen}:${3:tag}",
+		"description": "Codigo para crear un contenedor desde comando"
+	},
+	// Docker compose imagenes
+	"Docker imagen de adminer": {
+		"prefix": "dk:build",
+		"body": [
+			"adminer:",
+			"container_name: srv-ckan-adminer",
+			"image: adminer",
+			"restart: always",
+			"networks:",
+			 " - net-ckan",
+			"ports:",
+			"  - 8080:8080"
+		]
+		,
+		"description": "imagen para una imagen de adminer en docker compose"
+	}
+
+
+}

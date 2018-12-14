@@ -1,0 +1,10 @@
+{
+	// DOCKERFILE
+	"dockerfile php-apache": {
+		"prefix": "dkc:base",
+		"body": [
+			"FROM php:7.2-apache"
+		],
+		"description": "Codigo base de docker compose"
+	},
+}

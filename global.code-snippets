@@ -1,0 +1,8 @@
+{
+	//Docker
+	"Docker genera un contenedor": {
+		"prefix": "dk:build",
+		"body": "docker run -dit --name ${1:nombre-contenedor} ${2:imagen}:${3:tag}",
+		"description": "Codigo para crear un contenedor desde comando"
+	}
+}
