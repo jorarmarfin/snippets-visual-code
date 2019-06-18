@@ -1,4 +1,5 @@
 {
+	/*Laravel*/
 	/*Migracion*/
 	"Migrate string": {
 		"prefix": "lvl:mig:string",
@@ -16,9 +17,37 @@
 			"public \\$timestamps = false;"
 		],
 		"description": "Campo string para migracion en laravel"
+	},
+	"scope":{
+		"prefix": "lvl:model:scope",
+		"body": [
+			"/**",
+			"* Scope a query to only include popular users.",
+			"*",
+			"* @param  \\Illuminate\\Database\\Eloquent\\Builder  $query",
+			"* @return \\Illuminate\\Database\\Eloquent\\Builder",
+			"*/",
+		   "public function scope${1:Nombre}(\\$query)",
+		   "{",
+			"\treturn \\$query->where('votes', '>', 100);",
+		   "}"
+		]
+
+	},
+	/*Drupal*/
+	"Entity":{
+		"prefix": "drupal:orm:entity",
+		"body":[
+			"\\$entity = \\Drupal::entityQuery('node');",
+			"\\$entity->condition('type', 'boletas');",
+			"\\$entity->condition('field_pe_estado', 'Pendiente', '=');",
+			"\\$entity->sort('field_dependencia.entity.weight', 'ASC');",
+			"\\$entity->sort('field_cargo.entity.weight', 'ASC');",
+			"\\$nids = \\$entity->execute();",
+			"\\$nodes = Node::loadMultiple(\\$nids);"
+		],
+		"description": "Codigo para hacer una consulta a un nodo"
 	}
-
-
 
 
 
