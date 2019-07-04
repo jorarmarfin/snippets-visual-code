@@ -38,6 +38,7 @@
 	"Entity":{
 		"prefix": "drupal:orm:entity",
 		"body":[
+			"use Drupal\\node\\Entity\\Node;\n\n",
 			"\\$entity = \\Drupal::entityQuery('node');",
 			"\\$entity->condition('type', 'boletas');",
 			"\\$entity->condition('field_pe_estado', 'Pendiente', '=');",
@@ -47,6 +48,32 @@
 			"\\$nodes = Node::loadMultiple(\\$nids);"
 		],
 		"description": "Codigo para hacer una consulta a un nodo"
+	},
+	"EntitySelect":{
+		"prefix": "drupal:orm:select",
+		"body":[
+			"\\$query = db_select('${1:commerce_order}', 'co');",
+			"\\$query->fields('co',array('order_id','type','total_price__number','state'));",
+			"\\$query->join('commerce_order_item','coi','co.order_id = coi.order_id');",
+			"\\$query->addField('coi','quantity');",
+			"\\$query->condition('co.state','validation','=');",
+			"\\$query->range(0,2);",
+			"\\$data =  \\$query->execute()->fetchAll();"
+		]	,
+		"description": "Select de una entidad de un modo"
+	},
+	"EntityCreate":{
+		"prefix": "drupal:orm:create",
+		"body":[
+			"use Drupal\\node\\Entity\\Node;\n\n",
+			"\\$node = Node::create( [",
+			"'type'=>'miembro',",
+			"'title' => 'nodo 24',",
+			"'body' => 'nodo 24',",
+			"]);",
+			"\\$node->save();",
+		]	,
+		"description": "Create de una entidad de un modo"
 	}
 
 

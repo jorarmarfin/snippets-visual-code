@@ -1,8 +1,11 @@
 {
-	//Docker
-	"Docker genera un contenedor": {
-		"prefix": "dk:build",
-		"body": "docker run -dit --name ${1:nombre-contenedor} ${2:imagen}:${3:tag}",
-		"description": "Codigo para crear un contenedor desde comando"
+	//DOCKER
+	"dockerbuil": {
+		"prefix": "docker:build",
+		"body": [
+			"docker build -t jorarmarfin/${1:imagen}:${2:version} . \n",
+			"docker run --name srv-apache -dit jorarmarfin/${1:imagen}:${2:version}"
+		],
+		"description": "codigo basico para hacer una imagen"
 	}
 }
