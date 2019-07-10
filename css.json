@@ -1,0 +1,12 @@
+{
+	//CSS 
+	"BreackPoint": {
+		"prefix": "css:breakpoint",
+		"body": [
+			"@media only screen and (max-width: 768px){",
+			"}"
+		],
+		"description": "BreakPoint para respons"
+	}
+
+}
