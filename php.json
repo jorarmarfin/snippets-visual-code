@@ -74,8 +74,18 @@
 			"\\$node->save();",
 		]	,
 		"description": "Create de una entidad de un modo"
+	},
+	/*October*/
+	"octo_file attachments":{
+		"prefix": "october:file:attach",
+		"body":[
+			"public \\$attachOne = [",
+				"\t'${1:foto}' => 'System\\Models\\File'",
+			"];"
+		]	,
+		"description": "Attach file october"
 	}
-
+	
 
 
 
