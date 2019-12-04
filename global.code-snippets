@@ -7,5 +7,25 @@
 			"docker run --name srv-apache -dit jorarmarfin/${1:imagen}:${2:version}"
 		],
 		"description": "codigo basico para hacer una imagen"
+	},
+	//Admin porto
+	"porto-admin":{
+		"prefix": "porto-a:card-prymary",
+		"body":[
+			"<section class=\"card card-primary mb-4\">",
+				"\t<header class=\"card-header\">",
+					"\t\t<div class=\"card-actions\">",
+						"\t\t\t<a href=\"#\" class=\"card-action card-action-toggle\" data-card-toggle=\"\"></a>",
+						"\t\t\t<a href=\"#\" class=\"card-action card-action-dismiss\" data-card-dismiss=\"\"></a>",
+					"\t\t</div>",
+
+					"\t\t<h2 class=\"card-title\">Title</h2>",
+				"\t</header>",
+				"\t<div class=\"card-body\">",
+					"\t\t<code>.card-primary</code>",
+				"\t</div>",
+			"</section>",
+		],
+		"description": "theme porto section car primary"
 	}
 }
