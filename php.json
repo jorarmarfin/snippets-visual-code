@@ -84,6 +84,16 @@
 			"];"
 		]	,
 		"description": "Attach file october"
+	},
+	"octo_model_accessors":{
+		"prefix": "october:model:accessors",
+		"body":[
+			"public function get${1:FirstName}Attribute(\\$value)",
+			"{",
+			"\treturn ucfirst(\\$value);",
+			"}"
+		]	,
+		"description": "Attach file october"
 	}
 	
 
