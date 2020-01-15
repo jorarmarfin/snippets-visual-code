@@ -94,8 +94,45 @@
 			"}"
 		]	,
 		"description": "Attach file october"
+	},
+	// TCPDF
+	"pdf_cell":{
+		"prefix": "tcpdf:cell",
+		"body":[
+			"PDF::SetXY(5,10);",
+			"PDF::Cell(200,5,'DECLARACIÓN JURADA',1,0,'C');"
+		]	,
+		"description": "cell de tcpdf"
+	},
+	"pdf_img":{
+		"prefix": "tcpdf:img",
+		"body":[
+			"PDF::Image(asset('assets/pages/img/ficha.png'),0,0,210,297,'', '', '', false, 300, '', false, false, 0);",
+		]	,
+		"description": "img de tcpdf"
+	},
+	"pdf_MultiCell":{
+		"prefix": "tcpdf:MultiCell",
+		"body":[
+			"\\$texto='';",
+			"PDF::MultiCell(155,5,\\$texto,1,'J',false);",
+		]	,
+		"description": "MultiCell de tcpdf"
+	},
+	"pdf_xy":{
+		"prefix": "tcpdf:xy",
+		"body":[
+			"PDF::SetXY(${1:x},${2:y});",
+		]	,
+		"description": "XY de tcpdf"
+	},
+	"pdf_SetFont":{
+		"prefix": "tcpdf:SetFont",
+		"body":[
+			"PDF::SetFont('helvetica','B',20);",
+		]	,
+		"description": "SetFont de tcpdf"
 	}
-	
 
 
 
