@@ -1,154 +1,164 @@
 {
-	/*Laravel*/
-	/*Migracion*/
-	"Migrate string": {
-		"prefix": "lvl:mig:string",
-		"body": [
-			"\\$table->string('${1:nombre}')->nullable();"
-		],
-		"description": "Campo string para migracion en laravel"
-	},
-	/*Model*/
-	"Table init": {
-		"prefix": "lvl:model:init",
-		"body": [
-			"protected \\$table = '${1:nombre_tabla}';",
-			"protected \\$guarded = [];",
-			"public \\$timestamps = false;"
-		],
-		"description": "Campo string para migracion en laravel"
-	},
-	"scope":{
-		"prefix": "lvl:model:scope",
-		"body": [
-			"/**",
-			"* Scope a query to only include popular users.",
-			"*",
-			"* @param  \\Illuminate\\Database\\Eloquent\\Builder  $query",
-			"* @return \\Illuminate\\Database\\Eloquent\\Builder",
-			"*/",
-		   "public function scope${1:Nombre}(\\$query)",
-		   "{",
-			"\treturn \\$query->where('votes', '>', 100);",
-		   "}"
-		]
+    /*Laravel*/
+    /*Migracion*/
+    "Migrate string": {
+        "prefix": "lvl:mig:string",
+        "body": [
+            "\\$table->string('${1:nombre}')->nullable();"
+        ],
+        "description": "Campo string para migracion en laravel"
+    },
+    /*Model*/
+    "Table init": {
+        "prefix": "lvl:model:init",
+        "body": [
+            "protected \\$table = '${1:nombre_tabla}';",
+            "protected \\$guarded = [];",
+            "public \\$timestamps = false;"
+        ],
+        "description": "Campo string para migracion en laravel"
+    },
+    "scope": {
+        "prefix": "lvl:model:scope",
+        "body": [
+            "/**",
+            "* Scope a query to only include popular users.",
+            "*",
+            "* @param  \\Illuminate\\Database\\Eloquent\\Builder  $query",
+            "* @return \\Illuminate\\Database\\Eloquent\\Builder",
+            "*/",
+            "public function scope${1:Nombre}(\\$query)",
+            "{",
+            "\treturn \\$query->where('votes', '>', 100);",
+            "}"
+        ]
 
-	},
-	/*Drupal*/
-	"Entity":{
-		"prefix": "drupal:orm:entity",
-		"body":[
-			"use Drupal\\node\\Entity\\Node;\n\n",
-			"\\$entity = \\Drupal::entityQuery('node');",
-			"\\$entity->condition('type', 'boletas');",
-			"\\$entity->condition('field_pe_estado', 'Pendiente', '=');",
-			"\\$entity->sort('field_dependencia.entity.weight', 'ASC');",
-			"\\$entity->sort('field_cargo.entity.weight', 'ASC');",
-			"\\$nids = \\$entity->execute();",
-			"\\$nodes = Node::loadMultiple(\\$nids);"
-		],
-		"description": "Codigo para hacer una consulta a un nodo"
-	},
-	"EntitySelect":{
-		"prefix": "drupal:orm:select",
-		"body":[
-			"\\$query = db_select('${1:commerce_order}', 'co');",
-			"\\$query->fields('co',array('order_id','type','total_price__number','state'));",
-			"\\$query->join('commerce_order_item','coi','co.order_id = coi.order_id');",
-			"\\$query->addField('coi','quantity');",
-			"\\$query->condition('co.state','validation','=');",
-			"\\$query->range(0,2);",
-			"\\$data =  \\$query->execute()->fetchAll();"
-		]	,
-		"description": "Select de una entidad de un modo"
-	},
-	"EntityCreate":{
-		"prefix": "drupal:orm:create",
-		"body":[
-			"use Drupal\\node\\Entity\\Node;\n\n",
-			"\\$node = Node::create( [",
-			"'type'=>'miembro',",
-			"'title' => 'nodo 24',",
-			"'body' => 'nodo 24',",
-			"]);",
-			"\\$node->save();",
-		]	,
-		"description": "Create de una entidad de un modo"
-	},
-	/*October*/
-	"octo_file attachments":{
-		"prefix": "october:file:attach",
-		"body":[
-			"public \\$attachOne = [",
-				"\t'${1:foto}' => 'System\\Models\\File'",
-			"];"
-		]	,
-		"description": "Attach file october"
-	},
-	"octo_model_accessors":{
-		"prefix": "october:model:accessors",
-		"body":[
-			"public function get${1:FirstName}Attribute(\\$value)",
-			"{",
-			"\treturn ucfirst(\\$value);",
-			"}"
-		]	,
-		"description": "Attach file october"
-	},
-	// TCPDF
-	"pdf_cell":{
-		"prefix": "tcpdf:cell",
-		"body":[
-			"PDF::SetXY(5,10);",
-			"PDF::Cell(200,5,'DECLARACIÓN JURADA',1,0,'C');"
-		]	,
-		"description": "cell de tcpdf"
-	},
-	"pdf_img":{
-		"prefix": "tcpdf:img",
-		"body":[
-			"PDF::Image(asset('assets/pages/img/ficha.png'),0,0,210,297,'', '', '', false, 300, '', false, false, 0);",
-		]	,
-		"description": "img de tcpdf"
-	},
-	"pdf_MultiCell":{
-		"prefix": "tcpdf:MultiCell",
-		"body":[
-			"\\$texto='';",
-			"PDF::MultiCell(155,5,\\$texto,1,'J',false);",
-		]	,
-		"description": "MultiCell de tcpdf"
-	},
-	"pdf_xy":{
-		"prefix": "tcpdf:xy",
-		"body":[
-			"PDF::SetXY(${1:x},${2:y});",
-		]	,
-		"description": "XY de tcpdf"
-	},
-	"pdf_SetFont":{
-		"prefix": "tcpdf:SetFont",
-		"body":[
-			"PDF::SetFont('helvetica','B',20);",
-		]	,
-		"description": "SetFont de tcpdf"
-	},
-	//Carbon
-	"createFromFormat":{
-		"prefix": "carbon:cff",
-		"body":[
-			"Carbon::createFromFormat('Y-m-d H', '1975-05-21 22')->toDateTimeString()",
-		]	,
-		"description": "CreateFromFormat"
-	},
-	"new_carbon":{
-		"prefix": "carbon:init",
-		"body":[
-			"\\$dt = new Carbon(\\$fecha);",
-			"\\$dt->format('d');",
-		]	,
-		"description": "new Carbon"
-	}
+    },
+    /*Drupal*/
+    "Entity": {
+        "prefix": "drupal:orm:entity",
+        "body": [
+            "use Drupal\\node\\Entity\\Node;\n\n",
+            "\\$entity = \\Drupal::entityQuery('node');",
+            "\\$entity->condition('type', 'boletas');",
+            "\\$entity->condition('field_pe_estado', 'Pendiente', '=');",
+            "\\$entity->sort('field_dependencia.entity.weight', 'ASC');",
+            "\\$entity->sort('field_cargo.entity.weight', 'ASC');",
+            "\\$nids = \\$entity->execute();",
+            "\\$nodes = Node::loadMultiple(\\$nids);"
+        ],
+        "description": "Codigo para hacer una consulta a un nodo"
+    },
+    "EntitySelect": {
+        "prefix": "drupal:orm:select",
+        "body": [
+            "\\$query = db_select('${1:commerce_order}', 'co');",
+            "\\$query->fields('co',array('order_id','type','total_price__number','state'));",
+            "\\$query->join('commerce_order_item','coi','co.order_id = coi.order_id');",
+            "\\$query->addField('coi','quantity');",
+            "\\$query->condition('co.state','validation','=');",
+            "\\$query->range(0,2);",
+            "\\$data =  \\$query->execute()->fetchAll();"
+        ],
+        "description": "Select de una entidad de un modo"
+    },
+    "EntityCreate": {
+        "prefix": "drupal:orm:create",
+        "body": [
+            "use Drupal\\node\\Entity\\Node;\n\n",
+            "\\$node = Node::create( [",
+            "'type'=>'miembro',",
+            "'title' => 'nodo 24',",
+            "'body' => 'nodo 24',",
+            "]);",
+            "\\$node->save();",
+        ],
+        "description": "Create de una entidad de un modo"
+    },
+    /*October*/
+    "octo_file attachments": {
+        "prefix": "october:file:attach",
+        "body": [
+            "public \\$attachOne = [",
+            "\t'${1:foto}' => 'System\\Models\\File'",
+            "];"
+        ],
+        "description": "Attach file october"
+    },
+    "octo_model_accessors": {
+        "prefix": "october:model:accessors",
+        "body": [
+            "public function get${1:FirstName}Attribute(\\$value)",
+            "{",
+            "\treturn ucfirst(\\$value);",
+            "}"
+        ],
+        "description": "Attach file october"
+    },
+    "octo_model_mutators": {
+        "prefix": "october:model:mutators",
+        "body": [
+            "public function set${1:FirstName}Attribute(\\$value)",
+            "{",
+            "\t\\$this->attributes['${1:FirstName}'] = strtolower(\\$value);",
+            "}"
+        ],
+        "description": "Attach file october"
+    },
+    // TCPDF
+    "pdf_cell": {
+        "prefix": "tcpdf:cell",
+        "body": [
+            "PDF::SetXY(5,10);",
+            "PDF::Cell(200,5,'DECLARACIÓN JURADA',1,0,'C');"
+        ],
+        "description": "cell de tcpdf"
+    },
+    "pdf_img": {
+        "prefix": "tcpdf:img",
+        "body": [
+            "PDF::Image(asset('assets/pages/img/ficha.png'),0,0,210,297,'', '', '', false, 300, '', false, false, 0);",
+        ],
+        "description": "img de tcpdf"
+    },
+    "pdf_MultiCell": {
+        "prefix": "tcpdf:MultiCell",
+        "body": [
+            "\\$texto='';",
+            "PDF::MultiCell(155,5,\\$texto,1,'J',false);",
+        ],
+        "description": "MultiCell de tcpdf"
+    },
+    "pdf_xy": {
+        "prefix": "tcpdf:xy",
+        "body": [
+            "PDF::SetXY(${1:x},${2:y});",
+        ],
+        "description": "XY de tcpdf"
+    },
+    "pdf_SetFont": {
+        "prefix": "tcpdf:SetFont",
+        "body": [
+            "PDF::SetFont('helvetica','B',20);",
+        ],
+        "description": "SetFont de tcpdf"
+    },
+    //Carbon
+    "createFromFormat": {
+        "prefix": "carbon:cff",
+        "body": [
+            "Carbon::createFromFormat('Y-m-d H', '1975-05-21 22')->toDateTimeString()",
+        ],
+        "description": "CreateFromFormat"
+    },
+    "new_carbon": {
+        "prefix": "carbon:init",
+        "body": [
+            "\\$dt = new Carbon(\\$fecha);",
+            "\\$dt->format('d');",
+        ],
+        "description": "new Carbon"
+    }
 
 
 
