@@ -105,6 +105,30 @@
         ],
         "description": "Attach file october"
     },
+    "octo_model_relation_one_to_many": {
+        "prefix": "october:relation:one_to_many",
+        "body": [
+            "/**  ",
+            "* Relations inverse One To Many ",
+            "*/",
+            "public \\$belongsTo = [",
+            "\t'${1:user}' => 'Rainlab\\User\\Models\\User'",
+            "];"
+        ],
+        "description": "Relation one_to_many"
+    },
+    "octo_model_scope": {
+        "prefix": "october:model:scope",
+        "body": [
+            "/**  ",
+            "* Scope a query to only include popular users. ",
+            "*/",
+            "public function scope${1:NameScope}(\\$query){",
+            "\t return \\$query->where('votes', '>', 100);",
+            "}"
+        ],
+        "description": "Relation one_to_many"
+    },
     // TCPDF
     "pdf_cell": {
         "prefix": "tcpdf:cell",
