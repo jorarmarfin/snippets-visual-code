@@ -129,6 +129,111 @@
         ],
         "description": "Relation one_to_many"
     },
+    "octo_plugin_settings": {
+        "prefix": "october:plugin:settings",
+        "body": [
+            "public function registerSettings()",
+            "{",
+            "\t return [",
+            "\t\t'config' => [",
+            "\t\t'label'       => 'luismayta.youtube::lang.plugin.name',",
+            "\t\t'description' => 'luismayta.youtube::lang.plugin.description',",
+            "\t\t'icon'        => 'icon-youtube-play',",
+            "\t\t'class'       => 'LuisMayta\\Youtube\\Models\\Settings',",
+            "\t\t'order'       => 600",
+            "\t\t]",
+            "\t ];",
+            "}"
+        ],
+        "description": "Plugins settings"
+    },
+    "octo_components_settings": {
+        "prefix": "october:component:init",
+        "body": [
+            "<?php namespace LuisMayta\\Coordinacion\\Components;",
+            "use Cms\\Classes\\ComponentBase;",
+            "class ${1:NombreClase} extends ComponentBase",
+            "{",
+            "\t public function componentDetails()",
+            "\t{",
+            "\t\treturn [",
+            "\t\t\t'name' => 'luismayta.coordinacion::lang.panel_admin.de_name',",
+            "\t\t\t'description' => 'luismayta.coordinacion::lang.panel_admin.de_desc'",
+            "\t\t];",
+            "\t}",
+            "}"
+        ],
+        "description": "Component init"
+    },
+    "octo_components_properties": {
+        "prefix": "october:component:defineproperties",
+        "body": [
+            "public function defineProperties()",
+            "{",
+            "\treturn [",
+            "\t\t'maxItems' => [",
+            "\t\t\t'title'             => 'Max items',",
+            "\t\t\t'description'       => 'The most amount of todo items allowed',",
+            "\t\t\t'default'           => 10,",
+            "\t\t\t'type'              => 'string',",
+            "\t\t\t'validationPattern' => '^[0-9]+\\$',",
+            "\t\t\t'validationMessage' => 'The Max Items property can contain only numeric symbols'",
+            "\t\t]",
+            "\t];",
+            "}"
+        ],
+        "description": "Component define properties"
+    },
+    "octo_components_onrun": {
+        "prefix": "october:component:onRun",
+        "body": [
+            "public function onRun()",
+            "{",
+            "\t\\$this->page['var'] = 'value'; // Inject some variable to the page",
+            "}"
+        ],
+        "description": "Component method onrun"
+    },
+    "octo_components_oninit": {
+        "prefix": "october:component:onInit",
+        "body": [
+            "public function onInit()",
+            "{",
+            "\t\\$this->page['var'] = 'value'; // Inject some variable to the page",
+            "}"
+        ],
+        "description": "Component method onInit"
+    },
+    "octo_components_onBeforePageStart": {
+        "prefix": "october:component:onBeforePageStart",
+        "body": [
+            "public function onBeforePageStart()",
+            "{",
+            "\t\\$this->page['var'] = 'value'; // Inject some variable to the page",
+            "}"
+        ],
+        "description": "Component method onBeforePageStart"
+    },
+    "octo_components_onStart": {
+        "prefix": "october:component:onStart",
+        "body": [
+            "public function onStart()",
+            "{",
+            "\t\\$this->page['var'] = 'value'; // Inject some variable to the page",
+            "}"
+        ],
+        "description": "Component method onStart"
+    },
+    "octo_components_onEnd": {
+        "prefix": "october:component:onEnd",
+        "body": [
+            "public function onEnd()",
+            "{",
+            "\t\\$this->page['var'] = 'value'; // Inject some variable to the page",
+            "}"
+        ],
+        "description": "Component method onEnd"
+    },
     // TCPDF
     "pdf_cell": {
         "prefix": "tcpdf:cell",
