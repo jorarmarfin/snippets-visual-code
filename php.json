@@ -18,6 +18,13 @@
         ],
         "description": "Campo string para migracion en laravel"
     },
+    "Table primary key": {
+        "prefix": "lvl:model:primarykey",
+        "body": [
+            "protected \\$primaryKey = '${1:Field}';"
+        ],
+        "description": "Definir llave primaria para la tabla"
+    },
     "scope": {
         "prefix": "lvl:model:scope",
         "body": [
