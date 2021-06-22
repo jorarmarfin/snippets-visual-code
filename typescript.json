@@ -1,22 +1,73 @@
 {
-    // Place your snippets for typescript here. Each snippet is defined under a snippet name and has a prefix, body and 
-    // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-    // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
-    // same ids are connected.
-    // Example:
-    // "Print to console": {
-    // 	"prefix": "log",
-    // 	"body": [
-    // 		"console.log('$1');",
-    // 		"$2"
-    // 	],
-    // 	"description": "Log output to console"
-    // }
-    "Print to console": {
-        "prefix": "clg",
+    //Models
+    "angular-models": {
+        "prefix": "ng-model-init",
         "body": [
-            "console.log('$1');",
+            "export class ${1:name}Model {",
+            "\temail:string;",
+            "\tpassword:string;",
+            "\tnombre: string;",
+            "}"
         ],
-        "description": "Log output to console"
+        "description": "Crea un modelo para una entidad"
+    },
+    //Importaciones
+    "angular-import-form":{
+        "prefix":"ng-import-forms",
+        "body":[
+            "import { FormsModule,ReactiveFormsModule } from '@angular/forms';"
+        ],
+        "description": "Importa los modulos para formularios angular"
+    },
+    "angular-import-http":{
+        "prefix":"ng-import-http",
+        "body":[
+            "import { HttpClientModule } from '@angular/common/http';"
+        ],
+        "description": "Importa los modulos para usar http"
+    },
+    //Rutas
+    "angular-ruta-path":{
+        "prefix": "ng-route-path",
+        "body": "{ path:'${1:ruta}', component: ${2:componente} }",
+        "description": "Fragmento de codigo para ruta"
+    },
+    "angular-ruta-pathfull":{
+        "prefix": "ng-route-pathfull",
+        "body": "{ path:'**', pathMatch:'full', redirectTo:'${1:path}' }",
+        "description": "Fragmento de codigo para ruta full"
+    },
+    "angular-ruta-hash":{
+        "prefix": "ng-route-hash",
+        "body": "imports: [RouterModule.forRoot(routes,{ useHash:true})],",
+        "description": "no usar htaccess si no hash"
+    },
+    //Formulario
+    "angular-formularios":{
+        "prefix": "ng-form-reactivo-creacion",
+        "body": [
+            "${1:FormName}: FormGroup;",
+            "this.${1:FormName} = this.fb.group({",
+            "\t${2:Campo}: ['DefaultValue',Validators.required],",
+            "\t${2:Campo}: ['DefaultValue',[Validators.required,Validators.minLength(5)]],",
+            "\temail: ['',[Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$')]]",
+            "\t\n});",
+            "//Importar -> FormBuilder, FormGroup, NgForm, Validators",
+            "//colocar en el constructor -> private fb:FormBuilder",
+            "//colocar en el input html -> formControlName=\"${2:Campo}\""
+        ]
+    },
+    "angular-formularios-getters":{
+        "prefix": "ng-form-reactivo-getter",
+        "body": [],
+        "description": "Sirve para colocar clases de validacion en tu formulario si saturar el html"
+    },
+    //Angular comandos
+    "angular-comandos-consola":{
+        "prefix": "ng-comands",
+        "body": [
+            "ng g c components/global/navbar  --skipTests //Genera componentes"
+        ],
+        "description": "Comandos usados en angular"
     }
 }

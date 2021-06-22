@@ -41,6 +41,56 @@
         ]
 
     },
+    // Controler
+    "lvlog": {
+        "prefix": "lvl:log",
+        "body": [
+            "Log::info('info:');"
+        ],
+        "description": "Registra informacion en el log de Laravel"
+
+    },
+    "Helper":{
+        "prefix": "lvl:helper",
+        "body": [
+            "namespace App\\Helpers;\n",
+            "class ${1:nombre_del_archivo} " ,
+            "{\n",
+            "\tpublic static function ${2:Metodo}()",
+            "\t{ \n",
+            "\t return 0;",
+            "\t}",
+            "}"
+        ],
+        "description": "Crea la clase base para hacer un helper en Laravel"
+    },
+    // Return Respons
+    "Retorno":{
+        "prefix": "lvl:return:json",
+        "body": "return response()->json(\\$crm)->withHeaders(\\$this->api_rest_headers);",
+        "description": "retorna campo json"
+    },
+    //Emails
+    "Email": {
+        "prefix": "lvl:email",
+        "body": "Mail::to('email@b.com')->cc(['a@b.com','a@b.com'])->send(new ${1:mailer}());",
+        "description": "como enviar un email"
+
+    },
+    "EmailBuild":{
+        "prefix": "lvl:email:build",
+        "body": [
+            "return \\$this->from('example@example.com')",
+            "->view('emails.orders.shipped');"
+        ],
+        "description": "Codigo base para enviar un email"
+    },
+    // Comandos
+    "Comando":{
+        "prefix": "lvl:command",
+        "body": "'${1:comando}:${2:comando} {--${3:variable}=?}';",
+        "description": "Ejemplo de comando"
+    },
     /*Drupal*/
     "Entity": {
         "prefix": "drupal:orm:entity",
@@ -68,6 +118,13 @@
             "\\$data =  \\$query->execute()->fetchAll();"
         ],
         "description": "Select de una entidad de un modo"
+    },
+    "dblog": {
+        "prefix": "drupal:log",
+        "body": [
+            "\\Drupal::logger('${1:tipo}')->notice('${2:mensaje}');",
+        ],
+        "description": "fragmento de código de log"
     },
     "EntityCreate": {
         "prefix": "drupal:orm:create",
@@ -135,6 +192,13 @@
             "}"
         ],
         "description": "Relation one_to_many"
+    },
+    "octo_model_json": {
+        "prefix": "october:model:json",
+        "body": [
+            "protected \\$jsonable = ['${1:Field}'];",
+        ],
+        "description": "Field Json to october"
     },
     "octo_plugin_settings": {
         "prefix": "october:plugin:settings",
@@ -294,6 +358,23 @@
             "\\$dt->format('d');",
         ],
         "description": "new Carbon"
+    },
+    "new_carbon_now": {
+        "prefix": "carbon:now",
+        "body": [
+            "\\$dt = new Carbon();",
+            "\\$dt->toDateString();",
+        ],
+        "description": "now Carbon"
+    },
+    /* Wordpress */
+    "wp_ftp": {
+        "prefix": "wp:ftp",
+        "body": [
+            "/* Desactivar el uso de FTP para actualizar Plugins y Themes en WordPress */",
+            "define('FS_METHOD','direct');",
+        ],
+        "description": "Deshabilita el ftp del wordpress"
     }
 
 

@@ -6,5 +6,46 @@
 			"{% partial '${1:menu}' %}",
 		],
 		"description": "Partial de october"
-	}
+	},
+	// Angular
+    //Formularios
+    "angular-form-template-open":{
+        "prefix":"ng-form-template-open",
+        "body":[
+            "<form autocomplete=\"off\" (ngSubmit)=\"${2:MetodoName}(${1:name})\" #${1:name}=\"ngForm\">",
+            "</form>"
+        ],
+        "description": "Importa los modulos para usar http"
+    },
+    //Reactivo
+    "angular-form-reactivo-open":{
+        "prefix":"ng-form-reactivo-open",
+        "body":[
+            "<form autocomplete=\"off\" (ngSubmit)=\"${2:MetodoName}()\" [formGroup]=\"${1:name}\">",
+            "</form>"
+        ],
+        "description": "Importa los modulos para usar http"
+    },
+    "angular-form-reactivo-class-validacion":{
+        "prefix":"ng-form-reactivo-class-validacion",
+        "body":"[class.is-invalid]=\"${1:MetodoGetter}\"",
+        "description": "Importa la validacion para agregar clase de no valido"
+    },
+    //Rutas
+    "angular-rutas-outlet":{
+        "prefix": "ng-route-outlet",
+        "body": "<router-outlet></router-outlet>",
+        "description": "Mostrar las rutas en tu  html"
+    },
+    //Bootstrap
+    "bootstrap-input-text":{
+        "prefix": "b5-input-text",
+        "body": [
+            "<div class=\"mb-3\">",
+            "\t<label for=\"${1:nameId}\" class=\"form-label\">${2:name} address</label>",
+            "\t<input type=\"text\" class=\"form-control\" id=\"${1:nameId}\" placeholder=\"${3:placeholder}\">",
+            "</div>"
+        ],
+        "description": "Inserta campo text para un formulario"
+    }       
 }
