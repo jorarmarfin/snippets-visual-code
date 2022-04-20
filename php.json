@@ -8,6 +8,28 @@
         ],
         "description": "Campo string para migracion en laravel"
     },
+    "Migrate create_table": {
+        "prefix": "lvl:mig:create-table",
+        "body": [
+            "Schema::create('${1:nombre}', function (Blueprint \\$table) {",
+            "\t\\$table->string('field',255)->nullable();",
+            "});",
+            "Schema::dropIfExists('${1:nombre}'); //Down"
+        ],
+        "description": "Campo string para migracion en laravel"
+    },
+    "Migrate create_field": {
+        "prefix": "lvl:mig:add-column",
+        "body": [
+            "Schema::table('${1:tabla}', function (Blueprint \\$table) {",
+            "\t\\$table->string('${2:field}',255)->nullable();",
+            "});",
+            "Schema::table('${1:tabla}', function (Blueprint \\$table) {",
+            "\t\\$table->dropColumn(['${2:field}']);",
+            "});"
+        ],
+        "description": "Campo string para migracion en laravel"
+    },
     /*Model*/
     "Table init": {
         "prefix": "lvl:model:init",
@@ -24,6 +46,26 @@
             "protected \\$primaryKey = '${1:Field}';"
         ],
         "description": "Definir llave primaria para la tabla"
+    },
+    "Table primary accessor": {
+        "prefix": "lvl:model:accessor",
+        "body": [
+            "public function get${1:NombreAccessor}Attribute(${2:value})",
+            "{",
+            "\treturn ucfirst(${2:value});",
+            "}",
+        ],
+        "description": "Definir un accessor de un campo"
+    },
+    "Table primary mutator": {
+        "prefix": "lvl:model:mutator",
+        "body": [
+            "public function set${1:NombreMutator}Attribute(\\$value)",
+            "{",
+            "\t\\$this->attributes['${2:Field}'] = strtolower(\\$value);",
+            "}",
+        ],
+        "description": "Definir un mutator de un campo"
     },
     "scope": {
         "prefix": "lvl:model:scope",
@@ -42,10 +84,18 @@
 
     },
     // Controler
+    "lvdd": {
+        "prefix": "lvl:dd",
+        "body": [
+            "dd('${1:String}');"
+        ],
+        "description": "Registra informacion en el log de Laravel"
+
+    },
     "lvlog": {
         "prefix": "lvl:log",
         "body": [
-            "Log::info('info:');"
+            "\\Log::info('info:'.json_encode(\\$odooProduct)); exit;"
         ],
         "description": "Registra informacion en el log de Laravel"
 
@@ -90,6 +140,21 @@
         "prefix": "lvl:command",
         "body": "'${1:comando}:${2:comando} {--${3:variable}=?}';",
         "description": "Ejemplo de comando"
+    },
+    "ComandoArgument":{
+        "prefix": "lvl:command:argument",
+        "body": "\\$this->argument('${1:argumento}');",
+        "description": "Leer un argumento del comando"
+    },
+    "ComandoOptions":{
+        "prefix": "lvl:command:option",
+        "body": "\\$this->option('${1:opcion}');",
+        "description": "Leer una opcion del comando"
+    },
+    "ComandoWritingOutput":{
+        "prefix": "lvl:command:writing-output",
+        "body": "\\$this->${2:info}('${1:Mensaje}');",
+        "description": "Escribir resultado los tipos son info, error, line"
     },
     /*Drupal*/
     "Entity": {

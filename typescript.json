@@ -29,8 +29,13 @@
     //Rutas
     "angular-ruta-path":{
         "prefix": "ng-route-path",
-        "body": "{ path:'${1:ruta}', component: ${2:componente} }",
+        "body": "{ path:'${1:ruta}', component: ${2:componente} },",
         "description": "Fragmento de codigo para ruta"
+    },
+    "angular-ruta-path-parametro":{
+        "prefix": "ng-route-path-parametro",
+        "body": "{ path:'${1:ruta}/:${3:id}', component: ${2:componente} },",
+        "description": "Fragmento de codigo para ruta con parametro"
     },
     "angular-ruta-pathfull":{
         "prefix": "ng-route-pathfull",
@@ -42,19 +47,47 @@
         "body": "imports: [RouterModule.forRoot(routes,{ useHash:true})],",
         "description": "no usar htaccess si no hash"
     },
+    "angular-ruta-redirect":{
+        "prefix": "ng-route-redirect",
+        "body": [
+            "private router:Router",
+            "this.router.navigate(['detalles',uuid]);"
+        ],
+        "description": "redireccion desde un controlador"
+    },
+    //Componentes
+    "angular-ruta-envia-params":{
+        "prefix": "ng-route-envia-params",
+        "body": [
+            "private router:Router //colocar en constructor",
+            "this.router.navigate(['detalle',id]);"
+        ],
+        "description": "Como enviar una ruta con parametro"
+    },
+    "angular-ruta-recibe-params":{
+        "prefix": "ng-route-recibe-params",
+        "body": [
+            "private activatedRoute: ActivatedRoute //colocar en constructor",
+            "this.activatedRoute.params.subscribe(resp=>{",
+            "\tconsole.log(resp['id']);",
+            "});"
+        ],
+        "description": "Como recibir una ruta con parametro"
+    },
     //Formulario
     "angular-formularios":{
         "prefix": "ng-form-reactivo-creacion",
         "body": [
-            "${1:FormName}: FormGroup;",
+            "${1:FormName}: FormGroup; //Colocar como variable",
             "this.${1:FormName} = this.fb.group({",
             "\t${2:Campo}: ['DefaultValue',Validators.required],",
             "\t${2:Campo}: ['DefaultValue',[Validators.required,Validators.minLength(5)]],",
             "\temail: ['',[Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}$')]]",
             "\t\n});",
-            "//Importar -> FormBuilder, FormGroup, NgForm, Validators",
-            "//colocar en el constructor -> private fb:FormBuilder",
-            "//colocar en el input html -> formControlName=\"${2:Campo}\""
+            "// Importar -> FormBuilder, FormGroup, NgForm, Validators",
+            "// Colocar en el constructor -> private fb:FormBuilder",
+            "// Colocar en el input html -> formControlName=\"${2:Campo}\"",
+            "// En la ultima version de typeScript obliga a incializar sus variables para eso se modifica el tsconfig.json y se agrega \"strictPropertyInitialization\": false y en la variable se pude usar tambien formBuscar!: FormGroup;"
         ]
     },
     "angular-formularios-getters":{
@@ -66,8 +99,66 @@
     "angular-comandos-consola":{
         "prefix": "ng-comands",
         "body": [
-            "ng g c components/global/navbar  --skipTests //Genera componentes"
+            "// ng g c components/global/navbar  --skipTests -> Genera componentes o pagina en angular (-is) para que no tenga hoja de estilo",
+            "// En la ultima version de typeScript obliga a incializar sus variables para eso se modifica el tsconfig.json y se agrega \"strictPropertyInitialization\": false y en la variable se pude usar tambien formBuscar!: FormGroup;"
         ],
         "description": "Comandos usados en angular"
+    },
+    //Angular Interfaces
+    "angular-interfaces-create":{
+        "prefix": "ng-interfaces-create",
+        "body": [
+            "export interface ${1:NombreInterface} {",
+            "\t${2:Campo}: string,",
+            "\tedad: number",
+            "}"
+        ],
+        "description": "Crea la plantilla para una interface"
+
+    },
+    //Definicion de variables
+    "angular-variable-array":{
+        "prefix": "ng-variable-array",
+        "body": [
+            "private heroes: Heroes[] = [{},{},{}];",
+            "private product = {} as Product",
+        ],
+        "description": "Como se define una variable array"
+    },
+    "angular-variable-hijo":{
+        "prefix": "ng-variable-hijo",
+        "body": [
+            "@Input() ${1:NombreVariable}:${2:any}={};",
+            "[${1:NombreVariable}]=\" variableEnviar \" //colocar en el html del padre",
+            "${1:NombreVariable}=\" variableEnviar \" //colocar en el html del padre en ionic"
+        ],
+        "description": "Define una variable que sera recibida de una padre"
+
+    },
+    //Javascript
+    "js-minusculas":{
+        "prefix": "js-minusculas",
+        "body": "${1:Variable}.toLowerCase()",
+        "description": "Convierte a minusculas"
+    },
+    "js-formatea-fecha":{
+        "prefix": "js-fecha-format",
+        "body": "this.fecha = new Date(this.miembro.fecha_nacimiento.seconds*1000);",
+        "description": "Formatea una fecha"
+    },
+    // Servicios
+    "ionic-servicio":{
+        "prefix": "i-servicio-variable",
+        "body": "return this.http.get<Miembros[]>(`URL/miembros?_format=json`,httpOptions);"
+    },
+    //Importaciones
+    "ionic-otro-storage":{
+        "prefix": "i-otros-storage",
+        "body": [
+            "https://ionicframework.com/docs/angular/storage",
+            "https://github.com/ionic-team/ionic-storage",
+        ],
+        "description": "Para habilitar el loca storage"
     }
+
 }

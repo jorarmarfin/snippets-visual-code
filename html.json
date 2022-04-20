@@ -31,11 +31,16 @@
         "body":"[class.is-invalid]=\"${1:MetodoGetter}\"",
         "description": "Importa la validacion para agregar clase de no valido"
     },
-    //Rutas
+    //Angular Rutas
     "angular-rutas-outlet":{
         "prefix": "ng-route-outlet",
         "body": "<router-outlet></router-outlet>",
         "description": "Mostrar las rutas en tu  html"
+    },
+    "angular-rutas-parametro":{
+        "prefix": "ng-route-parametro",
+        "body": "[routerLink]=\"['/${1:Paginadetalle}',${2:param}]\"",
+        "description": "Envia parametros por ruta"
     },
     //Bootstrap
     "bootstrap-input-text":{
