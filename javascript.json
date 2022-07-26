@@ -1,0 +1,12 @@
+{
+	"React Validacion Proptypes": {
+		"prefix": "react-valid-proptype",
+		"body": [
+			"import PropTypes from 'prop-types'",
+			"CounterApp.Prototypes = {",
+			"    numero: PropTypes.number",
+			"}"
+		],
+		"description": "validacion de Proptypes"
+	}
+}

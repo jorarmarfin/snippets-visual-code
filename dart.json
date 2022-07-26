@@ -1,41 +1,77 @@
 {
 	"Flutter main": {
-		"prefix": "fl:main",
+		"prefix": "fl-main",
 		"body": [
 			"MaterialApp(",
-			"title: 'Flutter Demo'",
-			"theme: DefaultTheme.base,",
-			"initialRoute: OptionsScreen.routerName,",
-			"routes: {",
-			"HomeScreen.routerName: (context) => const HomeScreen(),",
+				"title: '${1:Flutter Demo}',",
+				"theme: DefaultTheme.base,",
+				"initialRoute: ${2:HomeScreen}.routerName,",
+				"routes: {",
+				"${2:HomeScreen}.routerName: (context) => const ${2:HomeScreen}(),",
+				"}",
+			");"
+		],
+		"description": "Codigo de ejemplo Main"
+	},
+	"Flutter main Provider": {
+		"prefix": "fl-main-provider",
+		"body": [
+			"import 'package:provider/provider.dart';",
+			"",
+			"void main() {",
+			  "runApp(const AppState());",
 			"}",
-			")"
+			"",
+			"class AppState extends StatelessWidget {",
+			  "const AppState({Key? key}) : super(key: key);",
+			"",
+			  "@override",
+			  "Widget build(BuildContext context) {",
+				"return MultiProvider(",
+				  "providers: [",
+					"ChangeNotifierProvider(",
+					  "lazy: false,",
+					  "create: (_) => ${1:DrupalProvider}(),",
+					"),",
+				  "],",
+				  "child: const MyApp(),",
+				");",
+			  "}",
+			"}"		
+		],
+		"description": "Codigo de ejemplo Main con provider"
+	},
+	"Flutter export dart": {
+		"prefix": "fl-export-dart",
+		"body": [
+			"export 'package:flutter_${1:emanuel}/${2:screens}/${3:home}_${4:screen}.dart';"
 		],
 		"description": "inserta una variable de provider"
 	},
 	"variable provider": {
-		"prefix": "fl:provider-var",
+		"prefix": "fl-provider-var",
 		"body": [
 			"final ${1:nameProvider} = Provider.of<${2:Provider}>(context);"
 		],
 		"description": "inserta una variable de provider"
 	},
-	"link": {
-		"prefix": "fl:link",
+	"Flutter Router navigation": {
+		"prefix": "fl-router-navigation",
 		"body": [
+			"Navigator.pop(context);",
 			"Navigator.pushNamed(context, '${1:RouteName}');",
 		],
 		"description": "Inserta el fragmento de codigo para ir a otra pagina"
 	},
 	"Flutter Route Name": {
-		"prefix": "fl:route-name",
+		"prefix": "fl-route-name",
 		"body": [
 			"static String routerName = '${1:RouteName}';",
 		],
 		"description": "Define variable de ruta"
 	},
 	"Flutter Route Main": {
-		"prefix": "fl:route-main",
+		"prefix": "fl-route-main",
 		"body": [
 			"initialRoute: ${1:ControlesName}Screen.routerName,",
 			"routes: {",
@@ -44,25 +80,48 @@
 		],
 		"description": "Define variable de ruta"
 	},
-	"Rectángulo Widget": {
-		"prefix": "rectangulo",
+	"Flutter Future Provider": {
+		"prefix": "fl-future-provider",
 		"body": [
-			"class Rectangulo extends StatelessWidget {",
-			"    @override",
-			"    Widget build(BuildContext context) {",
-			"    return Container(",
-			"       width: 70,",
-			"       height: 70,",
-			"       decoration: BoxDecoration(",
-			"         color: Colors.blue",
-			"       ),",
-			"     );",
-			"   }",
+			"Future getLibros() async {",
+			"var url = Uri.parse('\\$_baseUrl/api/biblioteca/area/$tid?_format=json');",
+			"var url = Uri.https(_baseUrl, '/api/find-banks/3/33.530965, -86.723663');",
+			"final response = await http.get(url);",
+			"final decodeData = jsonDecode(response.body);",
+			"librosDrupal = LibrosModel.fromJson(decodeData).libros;",
 			"}",
 		],
-		"description": "Log output to console"
+		"description": "Define variable de ruta"
 	},
-
+	"Flutter Future url external": {
+		"prefix": "fl-future-url_external",
+		"body": [
+			"Future<void> OpenUriExternal(Uri url) async {",
+			"if (!await launchUrl(",
+			"url,",
+			"mode: LaunchMode.externalApplication,",
+			")) {",
+			"throw 'Could not launch \\$url';",
+			"}",
+			"}"
+		],
+		"description": "Inserta el future para abrir una url external"
+	},
+	"Flutter setter y getter": {
+		"prefix": "fl-setter-getter",
+		"body": [
+			"int _mesCumple = 0;",
+			"",
+			"int get mesCumple => _mesCumple;",
+			"",
+			"set mesCumple(int value) {",
+			"  _mesCumple = value;",
+			"  notifyListeners();",
+			"}",
+			""
+		],
+		"description": "Define variable de ruta"
+	},
 	"Flutter Page": {
 		"prefix": "fl-page",
 		"body": [
@@ -83,7 +142,6 @@
 		],
 		"description": "Crea una página de flutter fácilmente"
 	},
-
 	"Flutter Screen": {
 		"prefix": "fl-screen",
 		"body": [
@@ -91,10 +149,11 @@
 			"",
 			"",
 			"class ${1:name}Screen extends StatelessWidget {",
+			"const ${1:name}Screen({Key? key}) : super(key: key);",
 			"",
 			"  @override",
 			"  Widget build(BuildContext context) {",
-			"    return Scaffold(",
+			"    return const Scaffold(",
 			"      body: Center(",
 			"        child: Text('Hola Mundo'),",
 			"     ),",
@@ -103,5 +162,385 @@
 			"}",
 		],
 		"description": "Crea una página/screen de flutter fácilmente"
-	}
+	},
+	"Flutter Component": {
+		"prefix": "fl-component",
+		"body": [
+			"import 'package:flutter/material.dart';",
+			"",
+			"class BannerPublicitarioComponent extends StatelessWidget {",
+			"const BannerPublicitarioComponent({Key? key}) : super(key: key);",
+			"",
+			"@override",
+			"Widget build(BuildContext context) {",
+			"return Container(",
+			"color: Colors.red,",
+			"child: const Text('Texto'),",
+			");",
+			"}",
+			"}"
+		],
+		"description": "Crea un componente de flutter fácilmente"
+	},
+	"Flutter Theme": {
+		"prefix": "fl-Theme",
+		"body": [
+			"import 'package:flutter/material.dart';",
+			"//import 'package:google_fonts/google_fonts.dart';",
+			"",
+			"",
+			"//Colores",
+			"const colorPrincipal = Colors.purple;",
+			"const colorNaranja = Color(0xffFF9A3B);",
+			"",
+			"//Imagenes",
+			"const imgLoading = 'assets/images/loading.gif';",
+			"",
+			"//Iconos",
+			"const icoNosotros = 'assets/icons/about.png';",
+			"",
+			"class DefaultTheme {",
+			"static ThemeData base = ThemeData.light().copyWith(",
+			"primaryColor: colorPrincipal,",
+			"appBarTheme: const AppBarTheme(color: colorPrincipal),",
+			"",
+			"textTheme: TextTheme(",
+			"bodyText2: TextStyle(color: Colors.black),",
+			"//headline1: GoogleFonts.akayaTelivigala(fontSize: 60, color: Colors.white, fontWeight: FontWeight.bold)",
+			"),//TextTheme",
+			"floatingActionButtonTheme:",
+			"const FloatingActionButtonThemeData(backgroundColor: colorPrincipal),",
+			"",
+			"",
+			"elevatedButtonTheme: ElevatedButtonThemeData(",
+			"style: ElevatedButton.styleFrom(",
+			"primary: colorPrincipal,",
+			"shape: const StadiumBorder(),",
+			")),",
+			");",
+			"}",
+			"",
+			"",
+			"BoxDecoration fondoScreen(String fondo) {",
+			"return BoxDecoration(",
+			"    image: DecorationImage(image: AssetImage(fondo), fit: BoxFit.fill),",
+			");",
+			"}",
+			"",
+			"",
+			"BoxDecoration boxBoton(color) {",
+			"return BoxDecoration(",
+			"color: color,",
+			"border: Border.all(color: Colors.white, width: 2.5),",
+			"borderRadius: BorderRadius.circular(20),",
+			");",
+			"}",
+			"",
+			"",
+			"BoxDecoration boxRecuadro(color,double radio) {",
+			"return BoxDecoration(",
+			"color: color,",
+			"borderRadius: BorderRadius.circular(radio),",
+			");",
+			"}",
+			"",
+			"",
+			"BoxDecoration boxRecuadroOnly(",
+			"color, double arribaI, double arribaD, double abajoI, double abajoD) {",
+			"return BoxDecoration(",
+			"color: color,",
+			"borderRadius: BorderRadius.only(",
+			"topLeft: Radius.circular(arribaI),",
+			"topRight: Radius.circular(arribaD),",
+			"bottomLeft: Radius.circular(abajoI),",
+			"bottomRight: Radius.circular(abajoD)),",
+			");",
+			"}",
+			"",
+			"",
+			"BoxDecoration boxRecuadroSombra(color,double radio) {",
+			"return BoxDecoration(",
+			"color: color,",
+			"borderRadius: BorderRadius.circular(radio),",
+			"boxShadow: [",
+			"BoxShadow(",
+			"color: Colors.black12,",
+			"offset: Offset(0, 5),",
+			"blurRadius: 5)",
+			" ]",
+			");",
+			"}",
+		],
+		"description": "Default theme for Flutter"
+	},
+	"Flutter Theme Boton flotante": {
+		"prefix": "fl-Theme-boton-flotante",
+		"body": [
+			"floatingActionButtonTheme:",
+			"const FloatingActionButtonThemeData(backgroundColor: colorPrincipal));",
+		],
+		"description": "Default theme for Flutter"
+	},
+	"Flutter Provider": {
+		"prefix": "fl-provider",
+		"body": [
+			"import 'package:flutter/material.dart';",
+			"import 'package:http/http.dart' as http;",
+			"",
+			"",
+			"class ${1:nombre}Provider extends ChangeNotifier {",
+			"final String _baseUrl = '${2:https://emanuel.sahost.org}';",
+			"",
+			"",
+			"",
+			"",
+			"}",
+			""
+		],
+		"description": "Crea la plantilla, de un provider"
+	},
+	"Flutter Form Provider": {
+		"prefix": "fl-form-provider",
+		"body": [
+			"import 'package:flutter/material.dart';",
+			"",
+			"class FormProvider extends ChangeNotifier {",
+			"GlobalKey<FormState> formkey = GlobalKey<FormState>();",
+			"bool isValidForm() {",
+			"return formkey.currentState?.validate() == false;",
+			"}",
+			"}"
+		],
+		"description": "Crea la plantilla, de un provider para un Formulario"
+	},
+	"Flutter Model": {
+		"prefix": "fl-model",
+		"body": [
+			"class ${1:ModelName}Model {",
+			"  final List<${2:ModelName}> libros;",
+			"",
+			"  ${1:ModelName}Model({",
+			"    required this.libros,",
+			"  });",
+			"",
+			"  factory ${1:ModelName}Model.fromJson(List<dynamic> parsedJson) {",
+			"    List<${2:ModelName}> libro = [];",
+			"    libro = parsedJson.map((i) => ${2:ModelName}.fromJson(i)).toList();",
+			"",
+			"    return ${1:ModelName}Model(libros: libro);",
+			"  }",
+			"}",
+			"",
+			"class ${2:ModelName} {",
+			"  final String nombre;",
+			"  final String area;",
+			"  final String autor;",
+			"  final String descripcion;",
+			"",
+			"  ${2:ModelName}({required this.nombre, required this.area, required this.autor, required this.descripcion,});",
+			"",
+			"  factory ${2:ModelName}.fromJson(Map<String, dynamic> json) {",
+			"    return ${2:ModelName}(",
+			"      nombre: json['nombre'].toString()," ,
+			"      area: json['area'].toString()," ,
+			"      autor: json['autor'].toString(),", 
+			"      descripcion: json['descripcion'].toString()",
+			"      );",
+			"  }",
+			"}"
+		],
+		"description": "Crea la plantilla, de un model"
+	},
+	"Flutter Insert Icon": {
+		"prefix": "fl-insert-icon",
+		"body": [
+			"const Icon(Icons.${1:IconName})",
+		],
+		"description": "Inserta widget de icono"
+	},
+	"Flutter Insert Text": {
+		"prefix": "fl-insert-text",
+		"body": [
+			"const Text('${1:Texto}')",
+		],
+		"description": "Inserta widget de texto"
+	},
+	"Flutter Insert if provider": {
+		"prefix": "fl-insert-futurebuilder-snapshot",
+		"body": [
+			"if (snapshot.connectionState == ConnectionState.waiting) {",
+			"  return const Center(child: CircularProgressIndicator());",
+			"} else { return ; }"
+		],
+		"description": "Inserta condicional para mostrar un provider"
+	},
+	"Flutter Insert for widget": {
+		"prefix": "fl-insert-for-widget",
+		"body": [
+			"...${1:ArrayList}.map((e) => Text('data')),",
+		],
+		"description": "Inserta un for de widgets"
+	},
+	"Flutter Insert container": {
+		"prefix": "fl-insert-container",
+		"body": [
+			"Container(",
+			"width: double.infinity,",
+			"height: double.infinity,",
+			"color: Colors.indigo,",
+			"child: const Text('fondo'))",
+		],
+		"description": "Inserta el widget container"
+	},
+	"Flutter Insert stack": {
+		"prefix": "fl-insert-stack",
+		"body": [
+			"Stack(children: [],)",
+		],
+		"description": "Inserta el widget stack"
+	},
+	"Flutter Insert column": {
+		"prefix": "fl-insert-column",
+		"body": [
+			"Column(children: [],)",
+		],
+		"description": "Inserta el widget column"
+	},
+	"Flutter Insert row": {
+		"prefix": "fl-insert-row",
+		"body": [
+			"row(children: [],)",
+		],
+		"description": "Inserta el widget column"
+	},
+	"Flutter Insert var size": {
+		"prefix": "fl-insert-var-size",
+		"body": [
+			"final size = MediaQuery.of(context).size;",
+		],
+		"description": "Inserta el widget stack"
+	},
+	"Flutter Insert Sizedbox": {
+		"prefix": "fl-insert-sizebox",
+		"body": [
+			"const SizedBox(",
+            "height: ${1:100},",
+            "width: ${2:100},",
+          "),"
+		],
+		"description": "Inserta el widget stack"
+	},
+	"Flutter Insert boton elevated": {
+		"prefix": "fl-insert-boton-elevated",
+		"body": [
+			"ElevatedButton(onPressed: () {},child: const Text('${1:Ingresomitexto}'))",
+           
+		],
+		"description": "Inserta el widget stack"
+	},
+	"Flutter App Bar": {
+		"prefix": "fl-insert-appbart",
+		"body": [
+			"AppBar(",
+			"        title: const Text('Producto'),",
+			"        centerTitle: true,",
+			"      )"
+		],
+		"description": "Inserta appbar"
+	},
+	"Flutter BoxDecoration gradiente": {
+		"prefix": "fl-insert-box-gradiente",
+		"body": [
+			"gradient: LinearGradient(colors: [",
+			"Color.fromRGBO(63, 63, 156, 1),",
+			"Color.fromRGBO(90, 70, 178, 1),",
+			 " ])"
+		],
+		"description": "Inserta boxdecoraton gradiente"
+	},
+	"Flutter BoxDecoration radius": {
+		"prefix": "fl-insert-box-radius",
+		"body": [
+			"borderRadius: BorderRadius.circular(100),",
+		],
+		"description": "Inserta boxdecoraton radius"
+	},
+	"Flutter BoxDecoration sombra": {
+		"prefix": "fl-insert-box-shadow",
+		"body": [
+			"const [",
+			"BoxShadow(,",
+			"color: Colors.black, blurRadius: 15, offset: Offset(0, 5))",
+			"]"
+		],
+		"description": "Inserta boxdecoraton radius"
+	},
+	"Flutter Boton flotante": {
+		"prefix": "fl-insert-floatingActionButton",
+		"body": [
+			"floatingActionButton: FloatingActionButton(child: const Icon(Icons.add), onPressed: () {})"
+		],
+		"description": "Inserta Boton flotante"
+	},
+	"Flutter listado estilo textos": {
+		"prefix": "fl-estilo-textos",
+		"body": [
+			"//bodyLarge",
+			"//bodyMedium",
+			"//bodySmall",
+			"//bodyText1",
+			"//bodyText2",
+			"//button",
+			"//caption",
+			"//displayLarge",
+			"//displayMedium",
+			"//displaySmall",
+			"//hashCode",
+			"//headline1",
+			"//headline2",
+			"//headline3",
+			"//headline4",
+			"//headline5",
+			"//headline6",
+			"//headlineLarge",
+			"//headlineMedium",
+			"//headlineSmall",
+			"//labelLarge",
+			"//labelMedium",
+			"//labelSmall",
+			"//overline",
+			"//subtitle1",
+			"//subtitle2",
+			"//titleLarge",
+			"//titleMedium",
+			"//titleSmall",
+		],
+		"description": "Inserta la relacion de estilos de textos"
+	},
+	"Flutter Formulario GlobalKey": {
+		"prefix": "fl-provider-form-globalkey",
+		"body": [
+			"GlobalKey<FormState> formkey = GlobalKey<FormState>();"
+		],
+		"description": "Inserta globalkey para un formulario en un provider"
+	},
+	"Flutter Formulario validacion": {
+		"prefix": "fl-provider-form-validacion",
+		"body": [
+			"bool isValidForm() {",
+			"return formkey.currentState?.validate() == false;",
+			"}"
+		],
+		"description": "Inserta la validacion para un formulario en un provider"
+	},
+	"Flutter storage ": {
+		"prefix": "fl-storage-init",
+		"body": [
+			"final storage = FlutterSecureStorage();",
+			"storage.write(key: '${1:token}', value: ${2:decodeResp['idToken']});",
+		],
+		"description": "Crea la variable storage"
+	},
+
+
 }
